@@ -63,10 +63,11 @@ int main ( int argc, char *  argv [] )
     float * pC = NULL; // this will be used to read back data from GPU
     float * pD = NULL; // this will be used to store CPU Results
 
-    int nMemoryInBytes = 1024 * 1024 * 32;
+    int nMemoryInBytes = 1024 * 1024 * 16;
     int nFloatElem = nMemoryInBytes / 4;
+    int nPerCore = nFloatElem / core_count;
 
-    // allocate 4 arrays of 32 Mb each : 
+    // allocate 4 arrays of 16 Mb each : 
     pA = (float *) malloc( nMemoryInBytes );
     pB = (float *) malloc( nMemoryInBytes );
     pC = (float *) malloc( nMemoryInBytes );
@@ -75,7 +76,7 @@ int main ( int argc, char *  argv [] )
     Rand(pA, nFloatElem, 2); // fill array A with random numbers
     Rand(pB, nFloatElem, 3); // fill array B with random numbers
 
-    clock_t start, stop;
+    unsigned int start, stop;
 
     SArgList argList;
     argList.pA = pA;
@@ -85,25 +86,35 @@ int main ( int argc, char *  argv [] )
     argList.stop = nFloatElem;
     argList.times = 1000;
 
-    start = clock();
+    start = GetTickCount();
 
     MT_SimpleAddKernel((void *)&argList);
 
-    stop = clock();
+    stop = GetTickCount();
 
-    float singleThreadTime = (stop - start)  * 1000.0f / CLOCKS_PER_SEC;
+    float singleThreadTime = (stop - start);
     fprintf(stdout, "Single     thread time : %.5f  millseconds\n", singleThreadTime);
+
+    //argList.stop = nPerCore;
+
+    //start = GetTickCount();
+
+    //MT_SimpleAddKernel((void *)&argList);
+
+    //stop = GetTickCount();
+
+    //singleThreadTime = (stop - start);
+    //fprintf(stdout, "Single     thread time : %.5f  millseconds\n", singleThreadTime);
 
     HANDLE * pThreadHandle = (HANDLE *) malloc(core_count * sizeof(HANDLE));
     SArgList * pArgList = (SArgList *) malloc(core_count * sizeof(SArgList));
 
     pThreadHandle[0] = GetCurrentThread();
 
-    int nPerCore = nFloatElem / core_count;
-
     pArgList[core_count-1] = argList;
     pArgList[core_count-1].pC = pD;
     pArgList[core_count-1].start = nFloatElem - nPerCore;
+    pArgList[core_count-1].stop = nFloatElem;
 
     for (int icore = core_count; icore > 1; icore--)
     {
@@ -115,16 +126,17 @@ int main ( int argc, char *  argv [] )
     }
 
     pArgList[0].start = 0;
+    pArgList[0].stop = nPerCore;
 
-    start = clock();
+    start = GetTickCount();
 
-    MT_SimpleAddKernel((void *)&pArgList[0]);
+    //MT_SimpleAddKernel((void *)&pArgList[0]);
 
     WaitForMultipleObjects(core_count-1, &pThreadHandle[1], true, INFINITE);
 
-    stop = clock();
+    stop = GetTickCount();
 
-    float multiThreadTime = (stop - start)  * 1000.0f / CLOCKS_PER_SEC;
+    float multiThreadTime = (stop - start);
     fprintf(stdout, "Multi (%d) thread time : %.5f  millseconds\n", core_count, multiThreadTime);
 
     // perform error checking
@@ -137,10 +149,10 @@ int main ( int argc, char *  argv [] )
         }
     }
 
-    for (int icore = 1; icore < core_count; icore++)
-    {
-        CloseHandle(pThreadHandle[icore]);
-    }
+    //for (int icore = 1; icore < core_count; icore++)
+    //{
+    //    CloseHandle(pThreadHandle[icore]);
+    //}
 
     // free cpu resources
     free( pA );
