@@ -1,4 +1,6 @@
-#define	N	(1024*1024)		// array size
+#include <stdio.h>
+
+#define	N	(256*256)		// array size
 #define	PI	3.1415926f
 
 __global__ void kernel ( float * data )
@@ -6,7 +8,7 @@ __global__ void kernel ( float * data )
    int 		idx = blockIdx.x * blockDim.x + threadIdx.x;
    float	x   = 2.0f * PI * (float) idx / (float) N;
    
-   data [idx] = sinf ( sqrtf ( x ) );
+   data [idx] = sin ( sqrtf ( x ) );
 }
 
 int main ( int argc, char *  argv [] )
@@ -21,9 +23,13 @@ int main ( int argc, char *  argv [] )
     dim3 blocks  = dim3( N / threads.x, 1 );
 					
     kernel<<<blocks, threads>>> ( dev );
+    cudaThreadSynchronize();
 
     cudaMemcpy ( a, dev, N * sizeof ( float ), cudaMemcpyDeviceToHost );
     cudaFree   ( dev   );
+
+    for (int idx = 0; idx < N; idx++)
+        printf("a[%d] = %.5f\n", idx, a[idx]);
 
     delete a;
 
