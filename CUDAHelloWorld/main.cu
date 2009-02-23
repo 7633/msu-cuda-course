@@ -3,6 +3,9 @@
 #include <string.h>
 #include <math.h>
 
+#include "../Common/Rand.h"
+#include "../Common/HelloWorld.h"
+
 #include "HelloWorld.cu"
 
 int GetDeviceInfo(int & deviceCount, cudaDeviceProp & deviceProp, bool bPrintProp = false);
@@ -32,16 +35,6 @@ int GetDeviceInfo(int & deviceCount, cudaDeviceProp & deviceProp, bool bPrintPro
     }
 
     return deviceCount;
-}
-
-void Rand(float * pArray, int n, int x)
-{
-    srand(108719 * x + 1);
-
-    for (int ip = 0; ip < n; ip++)
-    {
-        pArray[ip] = rand() % 1025 - 512;
-    }
 }
 
 int main ( int argc, char *  argv [] )
