@@ -1,4 +1,4 @@
-#include "HelloWorld.h"
+#include "../Common/HelloWorld.h"
 
 __global__ 
 void CU_SimpleAddKernel( float * pA, float * pB, float * pC, int n)
