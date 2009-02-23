@@ -95,17 +95,6 @@ int main ( int argc, char *  argv [] )
     float singleThreadTime = (stop - start);
     fprintf(stdout, "Single     thread time : %.5f  millseconds\n", singleThreadTime);
 
-    //argList.stop = nPerCore;
-
-    //start = GetTickCount();
-
-    //MT_SimpleAddKernel((void *)&argList);
-
-    //stop = GetTickCount();
-
-    //singleThreadTime = (stop - start);
-    //fprintf(stdout, "Single     thread time : %.5f  millseconds\n", singleThreadTime);
-
     HANDLE * pThreadHandle = (HANDLE *) malloc(core_count * sizeof(HANDLE));
     SArgList * pArgList = (SArgList *) malloc(core_count * sizeof(SArgList));
 
@@ -130,7 +119,7 @@ int main ( int argc, char *  argv [] )
 
     start = GetTickCount();
 
-    //MT_SimpleAddKernel((void *)&pArgList[0]);
+    MT_SimpleAddKernel((void *)&pArgList[0]);
 
     WaitForMultipleObjects(core_count-1, &pThreadHandle[1], true, INFINITE);
 
@@ -148,11 +137,6 @@ int main ( int argc, char *  argv [] )
             break;
         }
     }
-
-    //for (int icore = 1; icore < core_count; icore++)
-    //{
-    //    CloseHandle(pThreadHandle[icore]);
-    //}
 
     // free cpu resources
     free( pA );
