@@ -57,53 +57,55 @@ int main ( int argc, char *  argv [] )
 
     float * pA = NULL;
     float * pB = NULL;
-    float * pC = NULL;
+    float * pC = NULL; // this will be used to read back data from GPU
+    float * pD = NULL; // this will be used to store CPU Results
 
-    int nMemoryInBytes = 1024 * 1024 * 16;
+    int nMemoryInBytes = 1024 * 1024 * 32;
     int nFloatElem = nMemoryInBytes / 4;
 
-    // allocate 3 arrays of 16 Mb  each : 
+    // allocate 4 arrays of 32 Mb each : 
     // on CPU
     pA = (float *) malloc( nMemoryInBytes );
     pB = (float *) malloc( nMemoryInBytes );
     pC = (float *) malloc( nMemoryInBytes );
+    pD = (float *) malloc( nMemoryInBytes );
 
     // on GPU
     cudaMalloc ( (void**) &pCuA, nMemoryInBytes );
     cudaMalloc ( (void**) &pCuB, nMemoryInBytes );
     cudaMalloc ( (void**) &pCuC, nMemoryInBytes );
 
-    Rand(pA, nFloatElem, 2);
-    Rand(pB, nFloatElem, 3);
+    Rand(pA, nFloatElem, 2); // fill array A with random numbers
+    Rand(pB, nFloatElem, 3); // fill array B with random numbers
 
     cudaMemcpy   ( pCuA, pA, nMemoryInBytes, cudaMemcpyHostToDevice );
     cudaMemcpy   ( pCuB, pB, nMemoryInBytes, cudaMemcpyHostToDevice );
-    //cudaMemcpy      ( pCuC, pC, nMemoryInBytes, cudaMemcpyHostToDevice );
 
     int nThreads[3] = {256, 1, 1};
     int nBlocks[2] = { 32 * 1024, 1 };
     nBlocks[1] += nFloatElem / (nBlocks[0] * nThreads[0] * nThreads[1] * nThreads[2]);
-    
-    float gpuTime = CU_SimpleAddKernel( pCuA, pCuB, pCuC, nThreads, nBlocks, nFloatElem);
 
-	// print the cpu and gpu times
+    float cpuTime = ST_SimpleAddKernel( pA, pB, pD, nFloatElem );
+    float gpuTime = CU_SimpleAddKernel( pCuA, pCuB, pCuC, nThreads, nBlocks, nFloatElem );
+
+    // print the cpu and gpu times
+    printf("time spent executing by the CPU: %.5f millseconds\n", cpuTime );
     printf("time spent executing by the GPU: %.5f millseconds\n", gpuTime );
 
-
-    //cudaMemcpy   ( pA, pCuA, nMemoryInBytes, cudaMemcpyDeviceToHost );
-    //cudaMemcpy   ( pB, pCuB, nMemoryInBytes, cudaMemcpyDeviceToHost );
+    // perform error checking
     cudaMemcpy   ( pC, pCuC, nMemoryInBytes, cudaMemcpyDeviceToHost );
 
-    for (int ip = 0; ip < nFloatElem; ip++)
+    for (int idx = 0; idx < nFloatElem; idx++)
     {
-        if (pC[ip] != pA[ip] + pB[ip])
-            printf("error %d\n", ip);
+        if (pC[idx] != pD[idx])
+            printf("error %d\n", idx);
     }
 
     // free cpu and cuda resources
     free( pA );
     free( pB );
     free( pC );
+    free( pD );
 
     cudaFree( pCuA );
     cudaFree( pCuB );
