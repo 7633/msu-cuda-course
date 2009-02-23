@@ -1,5 +1,7 @@
+#include "HelloWorld.h"
 
-void MT_SimpleAddKernel( float * pA, float * pB, float * pC)
+float MT_SimpleAddKernel( float * pA, float * pB, float * pC)
 {
+    return 0.0f;
 }
 
