@@ -1,0 +1,20 @@
+#
+# Makefile to build CUDA "Hello World" for Win32
+#
+# Author: Alex V. Boreskoff, <steps3d@narod.ru>
+#
+
+!include <win32.mak>
+
+EXES = hello.exe
+
+all: $(EXES)
+
+hello.exe: hello.cu
+	set nvcc_args=  hello.cu -o $@
+	_nvcc.bat
+
+
+clean:
+	@del $(EXES)  *.ilk *.pdb 2> nul
+
