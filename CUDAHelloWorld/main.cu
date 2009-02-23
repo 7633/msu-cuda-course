@@ -75,16 +75,30 @@ int main ( int argc, char *  argv [] )
 
     Rand(pA, nFloatElem, 2);
     Rand(pB, nFloatElem, 3);
-    Rand(pC, nFloatElem, 5);
+
+    cudaMemcpy   ( pCuA, pA, nMemoryInBytes, cudaMemcpyHostToDevice );
+    cudaMemcpy   ( pCuB, pB, nMemoryInBytes, cudaMemcpyHostToDevice );
+    //cudaMemcpy      ( pCuC, pC, nMemoryInBytes, cudaMemcpyHostToDevice );
 
     int nThreads[3] = {256, 1, 1};
     int nBlocks[2] = { 32 * 1024, 1 };
     nBlocks[1] += nFloatElem / (nBlocks[0] * nThreads[0] * nThreads[1] * nThreads[2]);
     
-    float gpuTime = CU_SimpleAddKernel( pCuA, pCuB, pCuC, nThreads, nBlocks);
+    float gpuTime = CU_SimpleAddKernel( pCuA, pCuB, pCuC, nThreads, nBlocks, nFloatElem);
 
 	// print the cpu and gpu times
     printf("time spent executing by the GPU: %.5f millseconds\n", gpuTime );
+
+
+    //cudaMemcpy   ( pA, pCuA, nMemoryInBytes, cudaMemcpyDeviceToHost );
+    //cudaMemcpy   ( pB, pCuB, nMemoryInBytes, cudaMemcpyDeviceToHost );
+    cudaMemcpy   ( pC, pCuC, nMemoryInBytes, cudaMemcpyDeviceToHost );
+
+    for (int ip = 0; ip < nFloatElem; ip++)
+    {
+        if (pC[ip] != pA[ip] + pB[ip])
+            printf("error %d\n", ip);
+    }
 
     // free cpu and cuda resources
     free( pA );

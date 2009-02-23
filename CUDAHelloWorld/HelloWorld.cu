@@ -1,7 +1,7 @@
 #include "HelloWorld.h"
 
 __global__ 
-void CU_SimpleAddKernel( float * pA, float * pB, float * pC)
+void CU_SimpleAddKernel( float * pA, float * pB, float * pC, int n)
 {
     int tid = (threadIdx.x + blockDim.x * (threadIdx.y + blockDim.y * threadIdx.z));
 
@@ -10,11 +10,12 @@ void CU_SimpleAddKernel( float * pA, float * pB, float * pC)
 
     int index = bid * blockSize + tid;
     
-    pC[index] = pA[index] + pB[index];
+    if (index < n)
+        pC[index] = pA[index] + pB[index];
 }
 
 
-float CU_SimpleAddKernel( float * pA, float * pB, float * pC, int * pthreads, int * pblocks)
+float CU_SimpleAddKernel( float * pA, float * pB, float * pC, int * pthreads, int * pblocks, int n)
 {
     dim3 threads = dim3(pthreads[0], pthreads[1], pthreads[2]);
     dim3 blocks  = dim3(pblocks[0], pblocks[1]);
@@ -29,8 +30,9 @@ float CU_SimpleAddKernel( float * pA, float * pB, float * pC, int * pthreads, in
 	// asynchronously issue work to the GPU (all to stream 0)
     cudaEventRecord ( start, 0 );
 	
-    CU_SimpleAddKernel<<<blocks, threads>>>(pA, pB, pC);
-	
+    CU_SimpleAddKernel<<<blocks, threads>>>(pA, pB, pC, n);
+	cudaThreadSynchronize();
+
     cudaEventRecord ( stop, 0 );
 
 	cudaEventSynchronize ( stop );
