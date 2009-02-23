@@ -101,7 +101,7 @@ int main ( int argc, char *  argv [] )
 
     pArgList[core_count-1] = argList;
     pArgList[core_count-1].pC = pD;
-    pArgList[core_count-1].start = nFloatElem - nFloatElemPerCore;
+    pArgList[core_count-1].start = nFloatElem - nFloatElemPerCore + 32567;
     pArgList[core_count-1].stop = nFloatElem;
 
     // the job is divided between all possible threads
