@@ -14,7 +14,7 @@ int main ( int argc, char *  argv [] )
     float * pC = NULL; 
     float * pD = NULL; 
 
-    int nMemoryInBytes = 1024 * 1024;
+    int nMemoryInBytes = 1024 * 512;
     int nFloatElem = nMemoryInBytes / 4;
 
     // allocate 4 arrays of 512 Kb each : 
