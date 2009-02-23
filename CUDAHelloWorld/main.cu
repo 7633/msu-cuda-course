@@ -6,6 +6,8 @@
 #include "../Common/Rand.h"
 #include "../Common/HelloWorld.h"
 
+// using CUDA 2.1 doesn't compile without this include (bug)
+// using CUDA 1.1 doesn't compile with    this include (this is the expected behaviour)
 #include "HelloWorld.cu"
 
 int GetDeviceInfo(int & deviceCount, cudaDeviceProp & deviceProp, bool bPrintProp = false);
