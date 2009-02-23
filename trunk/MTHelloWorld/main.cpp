@@ -77,21 +77,22 @@ int main ( int argc, char *  argv [] )
 
     clock_t start, stop;
 
-    start = clock();
-    
     SArgList argList;
     argList.pA = pA;
     argList.pB = pB;
     argList.pC = pC;
     argList.start = 0;
     argList.stop = nFloatElem;
-    argList.times = 100;
+    argList.times = 1000;
+
+    start = clock();
 
     MT_SimpleAddKernel((void *)&argList);
 
     stop = clock();
 
     float singleThreadTime = (stop - start)  * 1000.0f / CLOCKS_PER_SEC;
+    fprintf(stdout, "Single     thread time : %.5f  millseconds\n", singleThreadTime);
 
     HANDLE * pThreadHandle = (HANDLE *) malloc(core_count * sizeof(HANDLE));
     SArgList * pArgList = (SArgList *) malloc(core_count * sizeof(SArgList));
@@ -124,8 +125,6 @@ int main ( int argc, char *  argv [] )
     stop = clock();
 
     float multiThreadTime = (stop - start)  * 1000.0f / CLOCKS_PER_SEC;
-    
-    fprintf(stdout, "Single     thread time : %.5f  millseconds\n", singleThreadTime);
     fprintf(stdout, "Multi (%d) thread time : %.5f  millseconds\n", core_count, multiThreadTime);
 
     // perform error checking
@@ -136,6 +135,11 @@ int main ( int argc, char *  argv [] )
             fprintf(stdout, "error %d\n", idx);
             break;
         }
+    }
+
+    for (int icore = 1; icore < core_count; icore++)
+    {
+        CloseHandle(pThreadHandle[icore]);
     }
 
     // free cpu resources
