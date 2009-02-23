@@ -63,11 +63,11 @@ int main ( int argc, char *  argv [] )
     float * pC = NULL; // this will be used to read back data from GPU
     float * pD = NULL; // this will be used to store CPU Results
 
-    int nMemoryInBytes = 1024 * 32;
+    int nMemoryInBytes = 1024 * 128;
     int nFloatElem = nMemoryInBytes / 4;
-    int nPerCore = nFloatElem / core_count;
+    int nFloatElemPerCore = nFloatElem / core_count;
 
-    // allocate 4 arrays of 32 Kb each : 
+    // allocate 4 arrays of 128 Kb each : 
     pA = (float *) malloc( nMemoryInBytes );
     pB = (float *) malloc( nMemoryInBytes );
     pC = (float *) malloc( nMemoryInBytes );
@@ -84,7 +84,7 @@ int main ( int argc, char *  argv [] )
     argList.pC = pC;
     argList.start = 0;
     argList.stop = nFloatElem;
-    argList.times = 10000;
+    argList.times = 1000;
 
     start = GetTickCount();
 
@@ -102,24 +102,27 @@ int main ( int argc, char *  argv [] )
 
     pArgList[core_count-1] = argList;
     pArgList[core_count-1].pC = pD;
-    pArgList[core_count-1].start = nFloatElem - nPerCore;
+    pArgList[core_count-1].start = nFloatElem - nFloatElemPerCore;
     pArgList[core_count-1].stop = nFloatElem;
 
+    // the job is divided between all possible threads
     for (int icore = core_count; icore > 1; icore--)
     {
         pThreadHandle[icore-1] = (HANDLE) _beginthread(MT_SimpleAddKernel, 0, (void *)&pArgList[icore-1]);
         
         pArgList[icore-2] = pArgList[icore-1];
-        pArgList[icore-2].stop = pArgList[icore-2].start;
-        pArgList[icore-2].start -= nPerCore;
+        pArgList[icore-2].stop = pArgList[icore-1].start;
+        pArgList[icore-2].start -= nFloatElemPerCore;
     }
 
     pArgList[0].start = 0;
 
     start = GetTickCount();
 
+    // main thread does the rest of the job
     MT_SimpleAddKernel((void *)&pArgList[0]);
 
+    // wait for the second thread to finish execution
     WaitForMultipleObjects(core_count-1, &pThreadHandle[1], true, INFINITE);
 
     stop = GetTickCount();
