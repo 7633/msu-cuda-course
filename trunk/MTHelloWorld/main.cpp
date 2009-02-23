@@ -63,11 +63,11 @@ int main ( int argc, char *  argv [] )
     float * pC = NULL; // this will be used to read back data from GPU
     float * pD = NULL; // this will be used to store CPU Results
 
-    int nMemoryInBytes = 1024 * 1024 * 16;
+    int nMemoryInBytes = 1024 * 32;
     int nFloatElem = nMemoryInBytes / 4;
     int nPerCore = nFloatElem / core_count;
 
-    // allocate 4 arrays of 16 Mb each : 
+    // allocate 4 arrays of 32 Kb each : 
     pA = (float *) malloc( nMemoryInBytes );
     pB = (float *) malloc( nMemoryInBytes );
     pC = (float *) malloc( nMemoryInBytes );
@@ -84,7 +84,7 @@ int main ( int argc, char *  argv [] )
     argList.pC = pC;
     argList.start = 0;
     argList.stop = nFloatElem;
-    argList.times = 1000;
+    argList.times = 10000;
 
     start = GetTickCount();
 
@@ -115,7 +115,6 @@ int main ( int argc, char *  argv [] )
     }
 
     pArgList[0].start = 0;
-    pArgList[0].stop = nPerCore;
 
     start = GetTickCount();
 
