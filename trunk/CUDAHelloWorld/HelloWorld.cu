@@ -8,10 +8,10 @@ void CU_SimpleAddKernel( float * pA, float * pB, float * pC, int n)
     int bid = (blockIdx.x  + gridDim.x  * (blockIdx.y  + gridDim.z  * blockIdx.z ));
     int blockSize = blockDim.x * blockDim.y * blockDim.z;
 
-    int index = bid * blockSize + tid;
+    int idx = bid * blockSize + tid;
     
-    if (index < n)
-        pC[index] = pA[index] + pB[index];
+    if (idx < n)
+        pC[idx] = pA[idx] + pB[idx];
 }
 
 
