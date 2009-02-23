@@ -918,11 +918,11 @@
 			Name="Header Files"
 			>
 			<File
-				RelativePath=".\HelloWorld.h"
+				RelativePath="..\Common\HelloWorld.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Rand.h"
+				RelativePath="..\Common\Rand.h"
 				>
 			</File>
 		</Filter>
