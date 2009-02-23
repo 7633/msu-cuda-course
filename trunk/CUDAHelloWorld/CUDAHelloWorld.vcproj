@@ -65,7 +65,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cudart.lib cutil32D.lib"
+				AdditionalDependencies="cudart.lib"
 				OutputFile="../../bin/win32/$(ConfigurationName)/CUDAHelloWorld.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(CUDA_LIB_PATH);../../common/lib"
@@ -229,7 +229,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cudart.lib cutil32.lib"
+				AdditionalDependencies="cudart.lib"
 				OutputFile="../../bin/win32/$(ConfigurationName)/CUDAHelloWorld.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(CUDA_LIB_PATH);../../common/lib"
@@ -393,7 +393,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cudart.lib cutil32D.lib"
+				AdditionalDependencies="cudart.lib"
 				OutputFile="../../bin/win32/$(ConfigurationName)/CUDAHelloWorld.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(CUDA_LIB_PATH);../../common/lib"
@@ -558,7 +558,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cudart.lib cutil32.lib"
+				AdditionalDependencies="cudart.lib"
 				OutputFile="../../bin/win32/$(ConfigurationName)/CUDAHelloWorld.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(CUDA_LIB_PATH);../../common/lib"
