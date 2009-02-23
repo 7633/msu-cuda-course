@@ -5,6 +5,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CUDAHelloWorld", "CUDAHello
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MTHelloWorld", "MTHelloWorld\MTHelloWorld.vcproj", "{486BCB84-E369-46E3-B818-BE0DAC0F51BD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FF99DDCB-252A-4940-A272-64ACBFCAC8F3}"
+	ProjectSection(SolutionItems) = preProject
+		Common\HelloWorld.cpp = Common\HelloWorld.cpp
+		Common\HelloWorld.h = Common\HelloWorld.h
+		Common\Rand.cpp = Common\Rand.cpp
+		Common\Rand.h = Common\Rand.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
