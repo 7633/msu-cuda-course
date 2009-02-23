@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FF99DD
 		Common\Rand.h = Common\Rand.h
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SSEHelloWorld", "SSEHelloWorld\SSEHelloWorld.vcproj", "{75E0066E-4476-434C-BBDC-2C136984E7CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -53,6 +55,18 @@ Global
 		{486BCB84-E369-46E3-B818-BE0DAC0F51BD}.Release|Win32.ActiveCfg = Release|Win32
 		{486BCB84-E369-46E3-B818-BE0DAC0F51BD}.Release|Win32.Build.0 = Release|Win32
 		{486BCB84-E369-46E3-B818-BE0DAC0F51BD}.Release|x64.ActiveCfg = Release|Win32
+		{75E0066E-4476-434C-BBDC-2C136984E7CD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{75E0066E-4476-434C-BBDC-2C136984E7CD}.Debug|Win32.Build.0 = Debug|Win32
+		{75E0066E-4476-434C-BBDC-2C136984E7CD}.Debug|x64.ActiveCfg = Debug|Win32
+		{75E0066E-4476-434C-BBDC-2C136984E7CD}.EmuDebug|Win32.ActiveCfg = Debug|Win32
+		{75E0066E-4476-434C-BBDC-2C136984E7CD}.EmuDebug|Win32.Build.0 = Debug|Win32
+		{75E0066E-4476-434C-BBDC-2C136984E7CD}.EmuDebug|x64.ActiveCfg = Debug|Win32
+		{75E0066E-4476-434C-BBDC-2C136984E7CD}.EmuRelease|Win32.ActiveCfg = Release|Win32
+		{75E0066E-4476-434C-BBDC-2C136984E7CD}.EmuRelease|Win32.Build.0 = Release|Win32
+		{75E0066E-4476-434C-BBDC-2C136984E7CD}.EmuRelease|x64.ActiveCfg = Release|Win32
+		{75E0066E-4476-434C-BBDC-2C136984E7CD}.Release|Win32.ActiveCfg = Release|Win32
+		{75E0066E-4476-434C-BBDC-2C136984E7CD}.Release|Win32.Build.0 = Release|Win32
+		{75E0066E-4476-434C-BBDC-2C136984E7CD}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
