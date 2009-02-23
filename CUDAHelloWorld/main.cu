@@ -89,7 +89,10 @@ int main ( int argc, char *  argv [] )
     for (int idx = 0; idx < nFloatElem; idx++)
     {
         if (pC[idx] != pD[idx])
+        {
             printf("error %d\n", idx);
+            break;
+        }
     }
 
     // free cpu and cuda resources
