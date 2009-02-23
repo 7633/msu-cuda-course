@@ -32,3 +32,16 @@ void MT_SimpleAddKernel(void * pVoid)
         }
     }
 }
+
+void MT_SimpleAddKernel2(void * pVoid)
+{
+    //SArgList *pArgList = (SArgList *) pVoid;
+
+    //for (int itimes = 0; itimes < pArgList->times; itimes++)
+    //{
+    //    for (int idx = pArgList->start ; idx < pArgList->stop; idx++)
+    //    {
+    //        pArgList->pC[idx] = pArgList->pA[idx] + pArgList->pB[idx];
+    //    }
+    //}
+}
