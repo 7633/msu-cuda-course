@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <process.h> 
-#include <time.h>
 
 #include "../Common/HelloWorld.h"
 #include "../Common/Rand.h"
@@ -63,11 +62,11 @@ int main ( int argc, char *  argv [] )
     float * pC = NULL; // this will be used to read back data from GPU
     float * pD = NULL; // this will be used to store CPU Results
 
-    int nMemoryInBytes = 1024 * 128;
+    int nMemoryInBytes = 1024 * 512;
     int nFloatElem = nMemoryInBytes / 4;
     int nFloatElemPerCore = nFloatElem / core_count;
 
-    // allocate 4 arrays of 128 Kb each : 
+    // allocate 4 arrays of 512 Kb each : 
     pA = (float *) malloc( nMemoryInBytes );
     pB = (float *) malloc( nMemoryInBytes );
     pC = (float *) malloc( nMemoryInBytes );
