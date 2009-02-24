@@ -28,8 +28,8 @@ int main ( int argc, char *  argv [] )
     cudaMemcpy ( a, dev, N * sizeof ( float ), cudaMemcpyDeviceToHost );
     cudaFree   ( dev   );
 
-    for (int idx = 0; idx < N; idx++)
-        printf("a[%d] = %.5f\n", idx, a[idx]);
+    //for (int idx = 0; idx < N; idx++)
+    //    printf("a[%d] = %.5f\n", idx, a[idx]);
 
     delete a;
 
