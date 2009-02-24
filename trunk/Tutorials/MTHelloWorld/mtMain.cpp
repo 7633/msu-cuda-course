@@ -87,21 +87,19 @@ int main ( int argc, char *  argv [] )
 
     start = GetTickCount();
 
+    float singleThreadTime = ST_SimpleAddKernel(pA, pB, pC, nFloatElem, argList.times);
+
+    stop = GetTickCount();
+    
+    fprintf(stdout, "Single ST  thread time : %.5f  millseconds\n", stop - start);
+
+    start = GetTickCount();
+
     MT_SimpleAddKernel((void *)&argList);
 
     stop = GetTickCount();
 
-    float singleThreadTime = (stop - start);
-    fprintf(stdout, "Single MT  thread time : %.5f  millseconds\n", singleThreadTime);
-
-    start = GetTickCount();
-
-    singleThreadTime = ST_SimpleAddKernel(pA, pB, pC, nFloatElem, argList.times);
-
-    stop = GetTickCount();
-
-    singleThreadTime = (stop - start);
-    fprintf(stdout, "Single ST  thread time : %.5f  millseconds\n", singleThreadTime);
+    fprintf(stdout, "Single MT  thread time : %.5f  millseconds\n", stop - start);
 
     HANDLE * pThreadHandle = (HANDLE *) malloc(core_count * sizeof(HANDLE));
     SArgList * pArgList = (SArgList *) malloc(core_count * sizeof(SArgList));

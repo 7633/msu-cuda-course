@@ -36,7 +36,7 @@ void MT_SimpleAddKernel(void * pVoid)
 
     for (int itimes = 0; itimes < times; itimes++)
     {
-        for (int idx = start ; idx < stop; idx++)
+        for (int idx = start; idx < stop; idx++)
         {
             pC[idx] = pA[idx] + pB[idx];
         }
