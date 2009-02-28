@@ -61,8 +61,8 @@ int main ( int argc, char *  argv [] )
     float * pC = NULL; // this will be used to read back data from GPU
     float * pD = NULL; // this will be used to store CPU Results
 
-    int nMemoryInBytes = 1024 * 512;
-    int nFloatElem = nMemoryInBytes / 4;
+    int nFloatElem = 1024 * 128;
+    int nMemoryInBytes = nFloatElem * 4;
 
     // allocate 4 arrays of 32 Mb each : 
     // on CPU
@@ -89,8 +89,13 @@ int main ( int argc, char *  argv [] )
     cudaMemcpy   ( pCuB, pB, nMemoryInBytes, cudaMemcpyHostToDevice );
 
     int nThreads[3] = {512, 1, 1};
-    int nBlocks[2] = { 64 * 1024 - 1, 1 };
-    nBlocks[1] += nFloatElem / (nBlocks[0] * nThreads[0] * nThreads[1] * nThreads[2]);
+    
+    int divUpThread = (nFloatElem % nThreads[0] != 0) ? 1 : 0;
+    int nBlocks[2] = { min(64 * 1024 - 1, (nFloatElem / nThreads[0]) + divUpThread ), 0 };
+    
+    int nTotalInBlock0 = nBlocks[0] * nThreads[0] * nThreads[1] * nThreads[2];
+    int divUpBlock = (nFloatElem % nTotalInBlock0 != 0) ? 1 : 0;
+    nBlocks[1] = nFloatElem / (nTotalInBlock0) + divUpBlock;
 
     float cpuTime = ST_SimpleAddKernel( pA, pB, pD, nFloatElem );
     float gpuTime = CU_SimpleAddKernel( pCuA, pCuB, pCuC, nThreads, nBlocks, nFloatElem );
