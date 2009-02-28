@@ -51,7 +51,7 @@ int main ( int argc, char *  argv [] )
     float * pC = NULL; // this will be used to read back data from GPU
     float * pD = NULL; // this will be used to store CPU Results
 
-    int nMemoryInBytes = 1024 * 512;
+    int nMemoryInBytes = 1024 * 1024;
     int nFloatElem = nMemoryInBytes / 4;
 
     // allocate 4 arrays of 32 Mb each : 
@@ -76,8 +76,8 @@ int main ( int argc, char *  argv [] )
     int nBlocks[2] = { 32 * 1024, 1 };
     nBlocks[1] += nFloatElem / (nBlocks[0] * nThreads[0] * nThreads[1] * nThreads[2]);
 
-    float cpuTime = ST_SimpleAddKernel( pA, pB, pD, nFloatElem );
-    float gpuTime = CU_SimpleAddKernel( pCuA, pCuB, pCuC, nThreads, nBlocks, nFloatElem );
+    float cpuTime = ST_SimpleAddKernel( pA, pB, pD, nFloatElem, 100 );
+    float gpuTime = CU_SimpleAddKernel( pCuA, pCuB, pCuC, nThreads, nBlocks, nFloatElem, 100 );
 
     // print the cpu and gpu times
     printf("time spent executing by the CPU: %.5f millseconds\n", cpuTime );
