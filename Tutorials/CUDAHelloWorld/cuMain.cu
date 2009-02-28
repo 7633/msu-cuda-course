@@ -35,6 +35,16 @@ int GetDeviceInfo(int & deviceCount, cudaDeviceProp & deviceProp, bool bPrintPro
     return deviceCount;
 }
 
+bool MemoryCheck(void * ptr)
+{
+    if (ptr == NULL)
+    {
+        fprintf(stdout, "Allocated ptr is a NULL \n");
+        return false;
+    }
+    return true;
+}
+
 int main ( int argc, char *  argv [] )
 {
 	int deviceCount;
@@ -51,7 +61,7 @@ int main ( int argc, char *  argv [] )
     float * pC = NULL; // this will be used to read back data from GPU
     float * pD = NULL; // this will be used to store CPU Results
 
-    int nMemoryInBytes = 1024 * 1024;
+    int nMemoryInBytes = 1024 * 1024 * 32;
     int nFloatElem = nMemoryInBytes / 4;
 
     // allocate 4 arrays of 32 Mb each : 
@@ -66,14 +76,20 @@ int main ( int argc, char *  argv [] )
     cudaMalloc ( (void**) &pCuB, nMemoryInBytes );
     cudaMalloc ( (void**) &pCuC, nMemoryInBytes );
 
+    if (!MemoryCheck(pCuA) || !MemoryCheck(pCuB) || !MemoryCheck(pCuC))
+    {
+        fprintf(stdout, "Error: Closing application \n");
+        return -1;
+    }
+
     Rand(pA, nFloatElem, 2); // fill array A with random numbers
     Rand(pB, nFloatElem, 3); // fill array B with random numbers
 
     cudaMemcpy   ( pCuA, pA, nMemoryInBytes, cudaMemcpyHostToDevice );
     cudaMemcpy   ( pCuB, pB, nMemoryInBytes, cudaMemcpyHostToDevice );
 
-    int nThreads[3] = {256, 1, 1};
-    int nBlocks[2] = { 32 * 1024, 1 };
+    int nThreads[3] = {512, 1, 1};
+    int nBlocks[2] = { 64 * 1024 - 1, 1 };
     nBlocks[1] += nFloatElem / (nBlocks[0] * nThreads[0] * nThreads[1] * nThreads[2]);
 
     float cpuTime = ST_SimpleAddKernel( pA, pB, pD, nFloatElem, 100 );
