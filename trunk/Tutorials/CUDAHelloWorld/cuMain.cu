@@ -23,12 +23,13 @@ int GetDeviceInfo(int & deviceCount, cudaDeviceProp & deviceProp, bool bPrintPro
 		    fprintf(stdout, "Device %d\n", device );
 		    fprintf(stdout, "Compute capability     : %d.%d\n", deviceProp.major, deviceProp.minor );
 		    fprintf(stdout, "Name                   : %s   \n", deviceProp.name );
+            fprintf(stdout, "SM Count               : %d   \n", deviceProp.multiProcessorCount );
 		    fprintf(stdout, "Total Global Memory    : %d   \n", deviceProp.totalGlobalMem );
 		    fprintf(stdout, "Shared memory per block: %d   \n", deviceProp.sharedMemPerBlock );
 		    fprintf(stdout, "Registers per block    : %d   \n", deviceProp.regsPerBlock );
 		    fprintf(stdout, "Warp size              : %d   \n", deviceProp.warpSize );
 		    fprintf(stdout, "Max threads per block  : %d   \n", deviceProp.maxThreadsPerBlock );
-		    fprintf(stdout, "Total constant memory  : %d   \n", deviceProp.totalConstMem );
+		    fprintf(stdout, "Total constant memory  : %d   \n", deviceProp.totalConstMem );            
 	    }
     }
 
