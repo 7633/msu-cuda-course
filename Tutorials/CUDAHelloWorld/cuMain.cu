@@ -87,6 +87,8 @@ int main ( int argc, char *  argv [] )
 
     cudaMemcpy   ( pCuA, pA, nMemoryInBytes, cudaMemcpyHostToDevice );
     cudaMemcpy   ( pCuB, pB, nMemoryInBytes, cudaMemcpyHostToDevice );
+    
+    cudaMemset   ( pCuC, 0, nMemoryInBytes ); // fill with zeros
 
     int nThreads[3] = {512, 1, 1};
     
