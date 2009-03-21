@@ -31,7 +31,7 @@ int main ( int argc, char *  argv [] )
     //for (int idx = 0; idx < N; idx++)
     //    printf("a[%d] = %.5f\n", idx, a[idx]);
 
-    delete a;
+    delete [] a;
 
     return 0;
 }
