@@ -17,32 +17,32 @@ void CU_SimpleAddKernel( float * pA, float * pB, float * pC, int n)
 
 float CU_SimpleAddKernel( float * pA, float * pB, float * pC, int * pthreads, int * pblocks, int n, int times)
 {
-    dim3 threads = dim3(pthreads[0], pthreads[1], pthreads[2]);
-    dim3 blocks  = dim3(pblocks[0], pblocks[1]);
+	dim3 threads = dim3(pthreads[0], pthreads[1], pthreads[2]);
+	dim3 blocks  = dim3(pblocks[0], pblocks[1]);
 
 	// create cuda event handles
-    cudaEvent_t start, stop;
-    float gpuTime = 0.0f;
+	cudaEvent_t start, stop;
+	float gpuTime = 0.0f;
 
-    cudaEventCreate ( &start );
-    cudaEventCreate ( &stop );
+	cudaEventCreate ( &start );
+	cudaEventCreate ( &stop );
 	
 	// asynchronously issue work to the GPU (all to stream 0)
-    cudaEventRecord ( start, 0 );
+	cudaEventRecord ( start, 0 );
 
-    for (int itimes = 0; itimes < times; itimes++)
-    {
-        CU_SimpleAddKernel<<<blocks, threads>>>(pA, pB, pC, n);
-	    cudaThreadSynchronize();
-    }
+	for (int itimes = 0; itimes < times; itimes++)
+	{
+		CU_SimpleAddKernel<<<blocks, threads>>>(pA, pB, pC, n);
+		cudaThreadSynchronize();
+	}
 
-    cudaEventRecord ( stop, 0 );
+	cudaEventRecord ( stop, 0 );
 
 	cudaEventSynchronize ( stop );
 	cudaEventElapsedTime ( &gpuTime, start, stop );
 
-    cudaEventDestroy ( start );
-    cudaEventDestroy ( stop  );
+	cudaEventDestroy ( start );
+	cudaEventDestroy ( stop  );
 
-    return gpuTime;
+	return gpuTime;
 }
