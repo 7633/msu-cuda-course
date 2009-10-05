@@ -4,7 +4,7 @@
 	Version="9.00"
 	Name="CUDA_Runtime"
 	ProjectGUID="{55F71337-32A6-4C26-8CBA-A06A9183D6F2}"
-	RootNamespace="CUDA"
+	RootNamespace="CUDA_Runtime"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="131072"
 	>
@@ -18,7 +18,7 @@
 	</Platforms>
 	<ToolFiles>
 		<ToolFile
-			RelativePath="..\..\cuRules\Cuda.rules"
+			RelativePath="..\..\..\..\lilalbrother-projects\cuCommon\Cuda.rules"
 		/>
 	</ToolFiles>
 	<Configurations>
@@ -37,7 +37,7 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="CUDA Build Rule Internal"
+				Name="CUDA Build Rule"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -73,11 +73,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="cudart.lib"
-				OutputFile="../../bin/win32/$(ConfigurationName)/CUDA.exe"
+				OutputFile="../../bin/win32/$(ConfigurationName)/CUDA_Runtime.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(CUDA_LIB_PATH);../../common/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/CUDA.pdb"
+				ProgramDatabaseFile="$(OutDir)/CUDA_Runtime.pdb"
 				SubSystem="1"
 				EnableCOMDATFolding="1"
 				RandomizedBaseAddress="1"
@@ -122,7 +122,7 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="CUDA Build Rule Internal"
+				Name="CUDA Build Rule"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -155,7 +155,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="cudart.lib"
-				OutputFile="../../bin/win32/$(ConfigurationName)/CUDA.exe"
+				OutputFile="../../bin/win32/$(ConfigurationName)/CUDA_Runtime.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(CUDA_LIB_PATH);../../common/lib"
 				GenerateDebugInformation="true"
@@ -204,7 +204,7 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="CUDA Build Rule Internal"
+				Name="CUDA Build Rule"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -240,11 +240,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="cudart.lib"
-				OutputFile="../../bin/win32/$(ConfigurationName)/CUDA.exe"
+				OutputFile="../../bin/win32/$(ConfigurationName)/CUDA_Runtime.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(CUDA_LIB_PATH);../../common/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/CUDA.pdb"
+				ProgramDatabaseFile="$(OutDir)/CUDA_Runtime.pdb"
 				SubSystem="1"
 				EnableCOMDATFolding="1"
 				RandomizedBaseAddress="1"
@@ -289,7 +289,7 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="CUDA Build Rule Internal"
+				Name="CUDA Build Rule"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -323,7 +323,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="cudart.lib"
-				OutputFile="../../bin/win32/$(ConfigurationName)/CUDA.exe"
+				OutputFile="../../bin/win32/$(ConfigurationName)/CUDA_Runtime.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(CUDA_LIB_PATH);../../common/lib"
 				GenerateDebugInformation="true"
@@ -406,11 +406,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="cudart.lib cutil64D.lib"
-				OutputFile="../../bin/win64/$(ConfigurationName)/CUDA.exe"
+				OutputFile="../../bin/win64/$(ConfigurationName)/CUDA_Runtime.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(CUDA_LIB_PATH);../../common/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/CUDA.pdb"
+				ProgramDatabaseFile="$(OutDir)/CUDA_Runtime.pdb"
 				SubSystem="1"
 				EnableCOMDATFolding="1"
 				TargetMachine="17"
@@ -487,7 +487,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="cudart.lib cutil64.lib"
-				OutputFile="../../bin/win64/$(ConfigurationName)/CUDA.exe"
+				OutputFile="../../bin/win64/$(ConfigurationName)/CUDA_Runtime.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(CUDA_LIB_PATH);../../common/lib"
 				GenerateDebugInformation="true"
@@ -571,11 +571,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="cudart.lib cutil64D.lib"
-				OutputFile="../../bin/win64/$(ConfigurationName)/CUDA.exe"
+				OutputFile="../../bin/win64/$(ConfigurationName)/CUDA_Runtime.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(CUDA_LIB_PATH);../../common/lib"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/CUDA.pdb"
+				ProgramDatabaseFile="$(OutDir)/CUDA_Runtime.pdb"
 				SubSystem="1"
 				EnableCOMDATFolding="1"
 				TargetMachine="17"
@@ -653,7 +653,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="cudart.lib cutil64.lib"
-				OutputFile="../../bin/win64/$(ConfigurationName)/CUDA.exe"
+				OutputFile="../../bin/win64/$(ConfigurationName)/CUDA_Runtime.exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(CUDA_LIB_PATH);../../common/lib"
 				GenerateDebugInformation="true"
@@ -704,7 +704,7 @@
 					Name="Debug|Win32"
 					>
 					<Tool
-						Name="CUDA Build Rule Internal"
+						Name="CUDA Build Rule"
 						Keep="true"
 					/>
 				</FileConfiguration>
