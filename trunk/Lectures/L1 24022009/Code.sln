@@ -1,11 +1,15 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CUDA", "CUDA\CUDA.vcproj", "{55F71337-32A6-4C26-8CBA-A06A9183D6F2}"
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CUDA_Runtime", "CUDA\CUDA.vcproj", "{55F71337-32A6-4C26-8CBA-A06A9183D6F2}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MT", "MT\MT.vcproj", "{A1C61DA2-9918-462A-8F41-2AEBAF14E39F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SSE", "SSE\SSE.vcproj", "{527BC52B-B2D5-4624-A1F4-252104B8BB2A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenCL", "OpenCL\OpenCL.vcproj", "{CA362F74-EF83-468C-8B5C-7B920DACE801}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CUDA_Driver", "CUDA_Driver\CUDA_Driver.vcproj", "{C106BBBD-EFE9-46F3-BFD1-5290265FD201}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +63,30 @@ Global
 		{527BC52B-B2D5-4624-A1F4-252104B8BB2A}.Release|Win32.ActiveCfg = Release|Win32
 		{527BC52B-B2D5-4624-A1F4-252104B8BB2A}.Release|Win32.Build.0 = Release|Win32
 		{527BC52B-B2D5-4624-A1F4-252104B8BB2A}.Release|x64.ActiveCfg = Release|Win32
+		{CA362F74-EF83-468C-8B5C-7B920DACE801}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CA362F74-EF83-468C-8B5C-7B920DACE801}.Debug|Win32.Build.0 = Debug|Win32
+		{CA362F74-EF83-468C-8B5C-7B920DACE801}.Debug|x64.ActiveCfg = Debug|Win32
+		{CA362F74-EF83-468C-8B5C-7B920DACE801}.EmuDebug|Win32.ActiveCfg = Debug|Win32
+		{CA362F74-EF83-468C-8B5C-7B920DACE801}.EmuDebug|Win32.Build.0 = Debug|Win32
+		{CA362F74-EF83-468C-8B5C-7B920DACE801}.EmuDebug|x64.ActiveCfg = Debug|Win32
+		{CA362F74-EF83-468C-8B5C-7B920DACE801}.EmuRelease|Win32.ActiveCfg = Release|Win32
+		{CA362F74-EF83-468C-8B5C-7B920DACE801}.EmuRelease|Win32.Build.0 = Release|Win32
+		{CA362F74-EF83-468C-8B5C-7B920DACE801}.EmuRelease|x64.ActiveCfg = Release|Win32
+		{CA362F74-EF83-468C-8B5C-7B920DACE801}.Release|Win32.ActiveCfg = Release|Win32
+		{CA362F74-EF83-468C-8B5C-7B920DACE801}.Release|Win32.Build.0 = Release|Win32
+		{CA362F74-EF83-468C-8B5C-7B920DACE801}.Release|x64.ActiveCfg = Release|Win32
+		{C106BBBD-EFE9-46F3-BFD1-5290265FD201}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C106BBBD-EFE9-46F3-BFD1-5290265FD201}.Debug|Win32.Build.0 = Debug|Win32
+		{C106BBBD-EFE9-46F3-BFD1-5290265FD201}.Debug|x64.ActiveCfg = Debug|Win32
+		{C106BBBD-EFE9-46F3-BFD1-5290265FD201}.EmuDebug|Win32.ActiveCfg = Debug|Win32
+		{C106BBBD-EFE9-46F3-BFD1-5290265FD201}.EmuDebug|Win32.Build.0 = Debug|Win32
+		{C106BBBD-EFE9-46F3-BFD1-5290265FD201}.EmuDebug|x64.ActiveCfg = Debug|Win32
+		{C106BBBD-EFE9-46F3-BFD1-5290265FD201}.EmuRelease|Win32.ActiveCfg = Release|Win32
+		{C106BBBD-EFE9-46F3-BFD1-5290265FD201}.EmuRelease|Win32.Build.0 = Release|Win32
+		{C106BBBD-EFE9-46F3-BFD1-5290265FD201}.EmuRelease|x64.ActiveCfg = Release|Win32
+		{C106BBBD-EFE9-46F3-BFD1-5290265FD201}.Release|Win32.ActiveCfg = Release|Win32
+		{C106BBBD-EFE9-46F3-BFD1-5290265FD201}.Release|Win32.Build.0 = Release|Win32
+		{C106BBBD-EFE9-46F3-BFD1-5290265FD201}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
