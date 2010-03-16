@@ -1,0 +1,79 @@
+	.version 1.4
+	.target sm_10, map_f64_to_f32
+	// compiled with C:\CUDA\bin/../open64/lib//be.exe
+	// nvopencc built on 2009-05-02
+
+	.reg .u32 %ra<17>;
+	.reg .u64 %rda<17>;
+	.reg .f32 %fa<17>;
+	.reg .f64 %fda<17>;
+	.reg .u32 %rv<5>;
+	.reg .u64 %rdv<5>;
+	.reg .f32 %fv<5>;
+	.reg .f64 %fdv<5>;
+
+
+	//-----------------------------------------------------------
+	// Compiling hello.cuda_runtime.cpp3.i (C:/Users/AKHARL~1.COM/AppData/Local/Temp/ccBI#.a00500)
+	//-----------------------------------------------------------
+
+	//-----------------------------------------------------------
+	// Options:
+	//-----------------------------------------------------------
+	//  Target:ptx, ISA:sm_10, Endian:little, Pointer Size:32
+	//  -O3	(Optimization level)
+	//  -g0	(Debug level)
+	//  -m2	(Report advisories)
+	//-----------------------------------------------------------
+
+	.file	1	"hello.cuda_runtime.cudafe2.gpu"
+	.file	2	"C:\Program Files\Microsoft Visual Studio 9.0\VC\INCLUDE\crtdefs.h"
+	.file	3	"C:\CUDA\include\crt/device_runtime.h"
+	.file	4	"C:\CUDA\include\host_defines.h"
+	.file	5	"C:\CUDA\include\builtin_types.h"
+	.file	6	"c:\cuda\include\device_types.h"
+	.file	7	"c:\cuda\include\driver_types.h"
+	.file	8	"c:\cuda\include\texture_types.h"
+	.file	9	"c:\cuda\include\vector_types.h"
+	.file	10	"c:\cuda\include\host_defines.h"
+	.file	11	"C:\CUDA\include\device_launch_parameters.h"
+	.file	12	"c:\cuda\include\crt\storage_class.h"
+	.file	13	"C:\Program Files\Microsoft Visual Studio 9.0\VC\INCLUDE\time.h"
+	.file	14	"hello.cuda_runtime.cu"
+	.file	15	"C:\CUDA\include\common_functions.h"
+	.file	16	"c:\cuda\include\crt/func_macro.h"
+	.file	17	"c:\cuda\include\math_functions.h"
+	.file	18	"c:\cuda\include\device_functions.h"
+	.file	19	"c:\cuda\include\math_constants.h"
+	.file	20	"c:\cuda\include\sm_11_atomic_functions.h"
+	.file	21	"c:\cuda\include\sm_12_atomic_functions.h"
+	.file	22	"c:\cuda\include\sm_13_double_functions.h"
+	.file	23	"c:\cuda\include\common_types.h"
+	.file	24	"c:\cuda\include\texture_fetch_functions.h"
+	.file	25	"c:\cuda\include\math_functions_dbl_ptx1.h"
+
+
+	.entry _Z6kernelPf (
+		.param .u32 __cudaparm__Z6kernelPf_data)
+	{
+	.reg .u16 %rh<4>;
+	.reg .u32 %r<8>;
+	.reg .f32 %f<3>;
+	.loc	14	6	0
+$LBB1__Z6kernelPf:
+	.loc	14	10	0
+	mov.u16 	%rh1, %ctaid.x;      	// 
+	mov.u16 	%rh2, %ntid.x;       	// 
+	mul.wide.u16 	%r1, %rh1, %rh2;	// 
+	cvt.u32.u16 	%r2, %tid.x;     	// 
+	add.u32 	%r3, %r2, %r1;       	// 
+	cvt.rn.f32.s32 	%f1, %r3;     	// 
+	ld.param.u32 	%r4, [__cudaparm__Z6kernelPf_data];	// id:14 __cudaparm__Z6kernelPf_data+0x0
+	mul.lo.u32 	%r5, %r3, 4;      	// 
+	add.u32 	%r6, %r4, %r5;       	// 
+	st.global.f32 	[%r6+0], %f1;  	// id:15
+	.loc	14	11	0
+	exit;                         	// 
+$LDWend__Z6kernelPf:
+	} // _Z6kernelPf
+
