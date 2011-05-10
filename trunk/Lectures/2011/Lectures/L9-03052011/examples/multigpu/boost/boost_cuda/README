@@ -1,0 +1,111 @@
+[dmikushin@tesla-cmc boost_cuda]$ make
+g++ -g -I/opt/cuda/include -c boost_cuda.cpp -o boost_cuda.o
+nvcc -g -c pattern2d.cu -o pattern2d.o
+g++ boost_cuda.o pattern2d.o -o boost_cuda -lpthread -L/opt/cuda/lib64 -lcuda -lcudart -lm -lboost_thread-mt
+[dmikushin@tesla-cmc boost_cuda]$ ./boost_cuda 
+8 CUDA device(s) found
+Device 0 initialized
+Device 1 initialized
+Device 2 initialized
+Device 3 initialized
+Device 4 initialized
+Device 5 initialized
+Device 6 initialized
+Device 7 initialized
+Device 0 completed step 1
+Device 3 completed step 1
+Device 2 completed step 1
+Device 5 completed step 1
+Device 7 completed step 1
+Device 1 completed step 1
+Device 6 completed step 1
+Device 4 completed step 1
+Device 2 completed step 2
+Device 1 completed step 2
+Device 5 completed step 2
+Device 3 completed step 2
+Device 4 completed step 2
+Device 7 completed step 2
+Device 0 completed step 2
+Device 6 completed step 2
+Device 4 completed step 3
+Device 0 completed step 3
+Device 1 completed step 3
+Device 2 completed step 3
+Device 3 completed step 3
+Device 5 completed step 3
+Device 7 completed step 3
+Device 6 completed step 3
+Device 1 completed step 4
+Device 0 completed step 4
+Device 3 completed step 4
+Device 4 completed step 4
+Device 2 completed step 4
+Device 5 completed step 4
+Device 7 completed step 4
+Device 6 completed step 4
+Device 1 completed step 5
+Device 3 completed step 5
+Device 2 completed step 5
+Device 0 completed step 5
+Device 4 completed step 5
+Device 5 completed step 5
+Device 7 completed step 5
+Device 6 completed step 5
+Device 3 completed step 6
+Device 2 completed step 6
+Device 5 completed step 6
+Device 0 completed step 6
+Device 4 completed step 6
+Device 1 completed step 6
+Device 7 completed step 6
+Device 6 completed step 6
+Device 0 completed step 7
+Device 1 completed step 7
+Device 4 completed step 7
+Device 2 completed step 7
+Device 7 completed step 7
+Device 3 completed step 7
+Device 5 completed step 7
+Device 6 completed step 7
+Device 0 completed step 8
+Device 5 completed step 8
+Device 3 completed step 8
+Device 4 completed step 8
+Device 6 completed step 8
+Device 2 completed step 8
+Device 1 completed step 8
+Device 7 completed step 8
+Device 0 completed step 9
+Device 4 completed step 9
+Device 6 completed step 9
+Device 5 completed step 9
+Device 3 completed step 9
+Device 2 completed step 9
+Device 7 completed step 9
+Device 1 completed step 9
+Device 0 completed step 10
+Device 1 completed step 10
+Device 6 completed step 10
+Device 5 completed step 10
+Device 2 completed step 10
+Device 3 completed step 10
+Device 4 completed step 10
+Device 7 completed step 10
+Device 0 result abs max diff = 0.000127 @ (27,126)
+Device 0 deinitialized
+Device 1 result abs max diff = 0.000127 @ (27,126)
+Device 1 deinitialized
+Device 2 result abs max diff = 0.000127 @ (27,126)
+Device 2 deinitialized
+Device 3 result abs max diff = 0.000127 @ (27,126)
+Device 3 deinitialized
+Device 4 result abs max diff = 0.000127 @ (27,126)
+Device 4 deinitialized
+Device 5 result abs max diff = 0.000127 @ (27,126)
+Device 5 deinitialized
+Device 6 result abs max diff = 0.000127 @ (27,126)
+Device 6 deinitialized
+Device 7 result abs max diff = 0.000127 @ (27,126)
+Device 7 deinitialized
+

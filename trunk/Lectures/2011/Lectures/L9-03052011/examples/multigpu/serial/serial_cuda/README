@@ -1,0 +1,39 @@
+This sample demonstrates, how multiple GPUs can work in parallel in single thread. For accurate demonstration, realtime clock are used to measure kernel execution time for each GPU and total time between first GPU kernel launch and last GPU kernel finish. If all these values are close, then GPUs are likely working in parallel.
+
+[dmikushin@tesla-cmc serial_cuda]$ ./serial_cuda 
+8 CUDA device(s) found
+CPU time = 2.568967 sec
+Device 0 initialized
+Device 1 initialized
+Device 2 initialized
+Device 3 initialized
+Device 4 initialized
+Device 5 initialized
+Device 6 initialized
+Device 7 initialized
+GPU 0 time = 0.165301 sec
+GPU 1 time = 0.165227 sec
+GPU 2 time = 0.165175 sec
+GPU 3 time = 0.165116 sec
+GPU 4 time = 0.165100 sec
+GPU 5 time = 0.165322 sec
+GPU 6 time = 0.165249 sec
+GPU 7 time = 0.165177 sec
+Device 0 deinitialized
+Device 0 result abs max diff = 0.000093 @ (10322,5967)
+Device 1 deinitialized
+Device 1 result abs max diff = 0.000093 @ (10322,5967)
+Device 2 deinitialized
+Device 2 result abs max diff = 0.000093 @ (10322,5967)
+Device 3 deinitialized
+Device 3 result abs max diff = 0.000093 @ (10322,5967)
+Device 4 deinitialized
+Device 4 result abs max diff = 0.000093 @ (10322,5967)
+Device 5 deinitialized
+Device 5 result abs max diff = 0.000093 @ (10322,5967)
+Device 6 deinitialized
+Device 6 result abs max diff = 0.000093 @ (10322,5967)
+Device 7 deinitialized
+Device 7 result abs max diff = 0.000093 @ (10322,5967)
+Total time of 8 GPUs = 0.165841
+
