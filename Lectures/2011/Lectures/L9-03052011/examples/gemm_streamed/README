@@ -1,0 +1,14 @@
+This sample demonstrates performance benefits of streamed asynchronous data I/O and computations. Two versions of CUBLAS matrix-matrix multiplication routines are measured for performance, including time spent on moving input & output arrays between host and device. Serial mode routine is just a regular *gemm, while streamed version cuts big matrices into smaller submatrices and streams their transfer and computation asynchronously.
+
+Usage example:
+
+[dmikushin@tesla-cmc gemm_streamed]$ ./gemm_streamed 4 1024 1025 1 N N 1.0 0.0 16
+n	time		gflops		test	enorm		rnorm
+1024	0.013909 sec	154.390014	PASSED	0.018676	262177.187500
+1024	0.011231 sec	191.204784	PASSED	0.018693	262323.812500
+
+[dmikushin@tesla-cmc gemm_streamed]$ ./gemm_streamed 4 4096 4097 1 N N 1.0 0.0 16
+n	time		gflops		test	enorm		rnorm
+4096	0.431783 sec	318.305308	PASSED	0.293618	4194287.250000
+4096	0.396524 sec	346.609298	PASSED	0.293707	4194416.500000
+
